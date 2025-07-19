@@ -20,23 +20,28 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showDefaultHint, setShowDefaultHint] = useState(false);
-  const [needTwoFactor, setNeedTwoFactor] = useState(false);
+  const [verificationError, setVerificationError] = useState<string>('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     clearError();
+    setVerificationError('');
     
     const result = await login(formData);
     if (result.success) {
       onLoginSuccess(result.requirePasswordChange || false);
-    } else if (result.needTwoFactor) {
-      setNeedTwoFactor(true);
+    } else if (result.message) {
+      // 验证密钥相关错误
+      if (result.message.includes('验证密钥错误') || result.message.includes('账户已被锁定') || result.message.includes('失败次数过多') || result.message.includes('超级管理员登录需要填写验证密钥')) {
+        setVerificationError(result.message);
+      }
     }
   };
 
   const handleInputChange = (field: keyof LoginRequest, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (state.error) clearError();
+    if (verificationError) setVerificationError('');
   };
 
   const fillDefaultCredentials = () => {
@@ -246,38 +251,50 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             >
-              {/* 二次验证输入框 */}
-                  <AnimatePresence>
-                    {needTwoFactor && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                          二次验证码
-                        </label>
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <Shield className="h-5 w-5 text-gray-400" />
-                          </div>
-                          <motion.input
-                            whileFocus={{ scale: 1.02 }}
-                            type="text"
-                            value={formData.twoFactorCode || ''}
-                            onChange={(e) => handleInputChange('twoFactorCode', e.target.value)}
-                            className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100"
-                            placeholder="请输入二次验证码"
-                            required={needTwoFactor}
-                          />
-                        </div>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                          超级管理员需要输入二次验证码
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+              {/* 验证密钥输入框 */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+                className="mb-4"
+              >
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  验证密钥（可选）
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Shield className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <motion.input
+                    whileFocus={{ scale: 1.02 }}
+                    type="text"
+                    value={formData.twoFactorCode || ''}
+                    onChange={(e) => handleInputChange('twoFactorCode', e.target.value)}
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white/50 dark:bg-gray-700/50 backdrop-blur-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 dark:text-gray-100"
+                    placeholder="超级管理员请输入验证密钥，普通用户请留空"
+                  />
+                </div>
+                
+                {/* 验证密钥错误提示 */}
+                <AnimatePresence>
+                  {verificationError && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      className="mt-2 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg"
+                    >
+                      <p className="text-sm text-red-600 dark:text-red-400">
+                        {verificationError}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  填写正确验证密钥可登录为超级管理员，留空则为普通用户登录
+                </p>
+              </motion.div>
 
                   <motion.button
                     whileHover={{ scale: 1.05 }}
@@ -293,7 +310,7 @@ export default function LoginPage({ onLoginSuccess }: LoginPageProps) {
                         className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
                       />
                     ) : (
-                      needTwoFactor ? '验证登录' : '登录'
+                      '登录'
                     )}
                   </motion.button>
             </motion.div>

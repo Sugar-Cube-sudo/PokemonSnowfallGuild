@@ -6,7 +6,18 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "build:analyze": "ANALYZE=true npm run build",
+    "build:docker": "docker build -t snow-app .",
+    "deploy:docker": "docker run -d --name snow-app -p 3000:3000 snow-app",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "docker:build": "docker-compose build",
+    "health": "curl -f http://localhost:3000/api/health || exit 1",
+    "test": "echo \"No tests specified\" && exit 0",
+    "clean": "rm -rf .next dist node_modules/.cache"
   },
   "dependencies": {
     "framer-motion": "^12.23.6",

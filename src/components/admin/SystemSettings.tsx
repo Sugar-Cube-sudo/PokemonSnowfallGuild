@@ -17,6 +17,8 @@ import { UserRole, Permission } from '@/types/auth';
 import { hasPermission } from '@/lib/auth';
 import UserManagement from './UserManagement';
 import ApprovalManagement from './ApprovalManagement';
+import SecuritySettings from './SecuritySettings';
+import SystemMonitoring from './SystemMonitoring';
 
 interface SystemSettingsProps {
   onClose: () => void;
@@ -79,11 +81,6 @@ export default function SystemSettings({ onClose }: SystemSettingsProps) {
   const availableItems = menuItems.filter(item => item.available);
 
   const handleMenuClick = (viewId: SettingsView) => {
-    if (viewId === 'security' || viewId === 'system') {
-      // 这些功能暂未实现，显示提示
-      alert('此功能正在开发中，敬请期待！');
-      return;
-    }
     setCurrentView(viewId);
   };
 
@@ -93,6 +90,10 @@ export default function SystemSettings({ onClose }: SystemSettingsProps) {
         return <UserManagement onClose={() => setCurrentView('main')} />;
       case 'approvals':
         return <ApprovalManagement onClose={() => setCurrentView('main')} />;
+      case 'security':
+        return <SecuritySettings onClose={() => setCurrentView('main')} />;
+      case 'system':
+        return <SystemMonitoring onClose={() => setCurrentView('main')} />;
       default:
         return null;
     }

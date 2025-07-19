@@ -128,28 +128,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           message: user.isDefaultPassword ? '请修改默认密码' : '登录成功'
         };
       } else {
-        // 检查是否是超级管理员需要二次验证
-        if (credentials.username === 'admin' && !credentials.twoFactorCode) {
-          dispatch({ type: 'LOGIN_FAILURE', payload: '超级管理员需要二次验证' });
-          return {
-            success: false,
-            needTwoFactor: true,
-            message: '超级管理员需要二次验证'
-          };
-        }
-        
-        dispatch({ type: 'LOGIN_FAILURE', payload: '用户名、密码或验证码错误' });
+        dispatch({ type: 'LOGIN_FAILURE', payload: '用户名或密码错误' });
         return {
           success: false,
-          message: '用户名、密码或验证码错误'
+          message: '用户名或密码错误'
         };
       }
     } catch (error) {
-      const message = '登录失败，请稍后重试';
-      dispatch({ type: 'LOGIN_FAILURE', payload: message });
+      const errorMessage = error instanceof Error ? error.message : '登录失败，请稍后重试';
+      
+      dispatch({ type: 'LOGIN_FAILURE', payload: errorMessage });
       return {
         success: false,
-        message
+        message: errorMessage
       };
     }
   };

@@ -2,19 +2,21 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LogOut, User, Settings } from 'lucide-react';
+import { LogOut, User, Settings, Mail } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { UserRole, Permission } from '@/types/auth';
 import { hasPermission } from '@/lib/auth';
 import ModuleRenderer from '@/components/ModuleRenderer';
 import RoleBadge from '@/components/RoleBadge';
 import SystemSettings from '@/components/admin/SystemSettings';
+import { MessageManagement, NotificationBadge } from '@/components/messages';
 // 导入模块以触发注册
 import '@/components/modules';
 
 export default function Home() {
   const { state, logout } = useAuth();
   const [showSettings, setShowSettings] = useState(false);
+  const [showMessages, setShowMessages] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -65,6 +67,12 @@ export default function Home() {
               </div>
               
               <div className="flex items-center space-x-2">
+                {/* 消息通知 */}
+                <NotificationBadge
+                  onClick={() => setShowMessages(true)}
+                  className="relative"
+                />
+                
                 {canAccessSettings && (
                   <motion.button
                     whileHover={{ scale: 1.05 }}
@@ -82,6 +90,23 @@ export default function Home() {
                     />
                   </motion.button>
                 )}
+                
+                {/* 站内信入口 */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setShowMessages(true)}
+                  className="p-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors relative group"
+                  title="站内信管理"
+                >
+                  <Mail className="w-5 h-5" />
+                  {/* 信封按钮的动画效果 */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                </motion.button>
                 
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -114,6 +139,9 @@ export default function Home() {
             <ModuleRenderer 
               position="sidebar" 
               className="space-y-6"
+              moduleProps={{
+                onViewAll: () => setShowMessages(true)
+              }}
             />
           </div>
         </div>
@@ -138,6 +166,22 @@ export default function Home() {
       <AnimatePresence>
         {showSettings && (
           <SystemSettings onClose={() => setShowSettings(false)} />
+        )}
+      </AnimatePresence>
+      
+      {/* 消息管理模态框 */}
+      <AnimatePresence>
+        {showMessages && (
+          <div className="fixed inset-0 z-50">
+            <MessageManagement />
+            <button
+              onClick={() => setShowMessages(false)}
+              className="absolute top-4 right-4 p-2 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-lg shadow-lg transition-colors z-10"
+              title="关闭消息管理"
+            >
+              ✕
+            </button>
+          </div>
         )}
       </AnimatePresence>
     </div>

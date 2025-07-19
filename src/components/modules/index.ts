@@ -4,7 +4,9 @@
 // 导入所有模块组件
 import './MemberStats';
 import './MemberTypeChart';
+import './MemberAnalytics';
 import './WelcomePanel';
+import './MessageSummary';
 
 // 导出模块加载器函数
 export { getAllModules, getModulesByPosition, getModule } from '@/lib/moduleLoader';

@@ -7,9 +7,10 @@ import { ModuleConfig } from '@/types';
 interface ModuleRendererProps {
   position: 'main' | 'sidebar';
   className?: string;
+  moduleProps?: Record<string, any>;
 }
 
-export default function ModuleRenderer({ position, className = '' }: ModuleRendererProps) {
+export default function ModuleRenderer({ position, className = '', moduleProps = {} }: ModuleRendererProps) {
   const modules = getModulesByPosition(position);
 
   if (modules.length === 0) {
@@ -33,7 +34,7 @@ export default function ModuleRenderer({ position, className = '' }: ModuleRende
             }}
             className="mb-6 last:mb-0"
           >
-            <Component {...(module.props || {})} />
+            <Component {...(module.props || {})} {...moduleProps} />
           </motion.div>
         );
       })}

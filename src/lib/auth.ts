@@ -10,6 +10,74 @@ export const DEFAULT_ADMIN = {
 // 超级管理员二次验证码
 export const SUPER_ADMIN_2FA_CODE = 'oscar4471';
 
+// 二次验证失败跟踪
+interface TwoFactorAttempt {
+  username: string;
+  failedAttempts: number;
+  lastFailedAt: Date;
+  blockedUntil?: Date;
+}
+
+let twoFactorAttempts: TwoFactorAttempt[] = [];
+
+// 检查用户是否被禁止登录
+export function isUserBlocked(username: string): { blocked: boolean; blockedUntil?: Date } {
+  const attempt = twoFactorAttempts.find(a => a.username === username);
+  if (!attempt || !attempt.blockedUntil) {
+    return { blocked: false };
+  }
+  
+  const now = new Date();
+  if (now < attempt.blockedUntil) {
+    return { blocked: true, blockedUntil: attempt.blockedUntil };
+  }
+  
+  // 解除封禁
+  attempt.blockedUntil = undefined;
+  attempt.failedAttempts = 0;
+  return { blocked: false };
+}
+
+// 记录二次验证失败
+export function recordTwoFactorFailure(username: string): { failedAttempts: number; blocked: boolean; blockedUntil?: Date } {
+  let attempt = twoFactorAttempts.find(a => a.username === username);
+  
+  if (!attempt) {
+    attempt = {
+      username,
+      failedAttempts: 0,
+      lastFailedAt: new Date()
+    };
+    twoFactorAttempts.push(attempt);
+  }
+  
+  attempt.failedAttempts++;
+  attempt.lastFailedAt = new Date();
+  
+  // 5次失败后禁止24小时
+  if (attempt.failedAttempts >= 5) {
+    attempt.blockedUntil = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24小时后
+    return {
+      failedAttempts: attempt.failedAttempts,
+      blocked: true,
+      blockedUntil: attempt.blockedUntil
+    };
+  }
+  
+  return {
+    failedAttempts: attempt.failedAttempts,
+    blocked: false
+  };
+}
+
+// 重置二次验证失败次数
+export function resetTwoFactorFailures(username: string): void {
+  const attemptIndex = twoFactorAttempts.findIndex(a => a.username === username);
+  if (attemptIndex !== -1) {
+    twoFactorAttempts.splice(attemptIndex, 1);
+  }
+}
+
 // 角色标识配置
 export const ROLE_BADGES: Record<UserRole, { label: string; color: string; bgColor: string; icon: string }> = {
   [UserRole.SUPER_ADMIN]: {
@@ -143,17 +211,44 @@ export async function authenticateUser(username: string, password: string, twoFa
   // 模拟异步操作
   await new Promise(resolve => setTimeout(resolve, 500));
   
-  const user = users.find(u => u.username === username);
-  if (!user) return null;
+  // 检查用户是否被禁止登录（仅针对超级管理员验证失败）
+  if (twoFactorCode) {
+    const blockStatus = isUserBlocked(username);
+    if (blockStatus.blocked) {
+      throw new Error(`账户已被锁定，请在 ${blockStatus.blockedUntil?.toLocaleString()} 后重试`);
+    }
+  }
+  
+  // 如果提供了验证密钥，检查是否为超级管理员
+  if (twoFactorCode) {
+    if (twoFactorCode === SUPER_ADMIN_2FA_CODE && username === 'admin' && password === DEFAULT_ADMIN.password) {
+      // 超级管理员验证成功，重置失败次数
+      resetTwoFactorFailures(username);
+      const superAdmin = users.find(u => u.role === UserRole.SUPER_ADMIN);
+      return superAdmin || null;
+    } else {
+      // 验证密钥错误
+      const failureResult = recordTwoFactorFailure(username);
+      if (failureResult.blocked) {
+        throw new Error(`验证密钥错误次数过多，账户已被锁定24小时。如果您不是超级管理员，请留空验证密钥字段尝试普通登录。`);
+      } else {
+        throw new Error(`验证密钥错误，还剩 ${5 - failureResult.failedAttempts} 次机会。如果您不是超级管理员，请留空此字段。`);
+      }
+    }
+  }
+  
+  // 普通用户登录（验证密钥为空）
+  const user = users.find(u => u.username === username && u.role !== UserRole.SUPER_ADMIN);
+  if (!user) {
+    // 检查是否尝试用超级管理员账号但未提供验证密钥
+    if (username === 'admin') {
+      throw new Error('超级管理员登录需要填写验证密钥，如果您不是超级管理员，请使用其他账号登录。');
+    }
+    return null;
+  }
   
   // 简单密码验证（实际项目中应该使用哈希验证）
   if (user.isDefaultPassword && password === DEFAULT_ADMIN.password) {
-    // 超级管理员需要二次验证
-    if (user.role === UserRole.SUPER_ADMIN) {
-      if (!twoFactorCode || twoFactorCode !== SUPER_ADMIN_2FA_CODE) {
-        return null;
-      }
-    }
     return user;
   }
   

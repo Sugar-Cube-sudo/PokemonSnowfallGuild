@@ -24,11 +24,28 @@ function WelcomePanelComponent() {
   useEffect(() => {
     const fetchHitokoto = async () => {
       try {
-        const response = await fetch('https://v1.hitokoto.cn/?c=b');
+        // 添加超时控制
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5秒超时
+        
+        const response = await fetch('https://v1.hitokoto.cn/?c=b', {
+          signal: controller.signal,
+          mode: 'cors',
+          headers: {
+            'Accept': 'application/json',
+          }
+        });
+        
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data: HitokotoResponse = await response.json();
         setHitokoto(data);
       } catch (error) {
-        console.error('Failed to fetch hitokoto:', error);
+        console.warn('Failed to fetch hitokoto, using default:', error);
         // 设置默认一言
         setHitokoto({
           hitokoto: '愿你的每一天都充满阳光与希望',

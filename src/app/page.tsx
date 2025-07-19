@@ -1,38 +1,99 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { LogOut, User, Settings } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { UserRole, Permission } from '@/types/auth';
+import { hasPermission } from '@/lib/auth';
 import ModuleRenderer from '@/components/ModuleRenderer';
+import RoleBadge from '@/components/RoleBadge';
+import SystemSettings from '@/components/admin/SystemSettings';
 // 导入模块以触发注册
 import '@/components/modules';
 
 export default function Home() {
+  const { state, logout } = useAuth();
+  const [showSettings, setShowSettings] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  // 检查是否有系统设置权限
+  const canAccessSettings = hasPermission(state.user, Permission.USER_CREATE) || 
+                           hasPermission(state.user, Permission.USER_UPDATE) || 
+                           hasPermission(state.user, Permission.USER_DELETE) ||
+                           state.user?.role === UserRole.SUPER_ADMIN;
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
-      {/* 页面标题 */}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900">
+      {/* 页面头部 */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700"
+        className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl border-b border-gray-200/20 dark:border-gray-700/20 shadow-lg"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                 落雪公会管理系统
               </h1>
-              <p className="text-gray-600 dark:text-gray-400 mt-1">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Pokemon Snowfall Guild Management System
               </p>
             </div>
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
-              className="text-4xl"
-            >
-              ❄️
-            </motion.div>
+            
+            {/* 用户信息和操作 */}
+            <div className="flex items-center space-x-4">
+              <div className="text-right">
+                <div className="flex items-center space-x-3 text-sm text-gray-700 dark:text-gray-300">
+                  <User className="w-4 h-4" />
+                  <span>欢迎，{state.user?.username}</span>
+                  {state.user?.role && (
+                    <RoleBadge role={state.user.role} size="sm" />
+                  )}
+                </div>
+                <div className="flex items-center justify-end gap-2 mt-1">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    在线状态
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-center space-x-2">
+                {canAccessSettings && (
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setShowSettings(true)}
+                    className="p-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors relative group"
+                    title="系统设置"
+                  >
+                    <Settings className="w-5 h-5" />
+                    {/* 设置按钮的动画效果 */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                      animate={{ rotate: [0, 180, 360] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+                    />
+                  </motion.button>
+                )}
+                
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleLogout}
+                  className="p-2 text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                  title="退出登录"
+                >
+                  <LogOut className="w-5 h-5" />
+                </motion.button>
+              </div>
+            </div>
           </div>
         </div>
       </motion.header>
@@ -72,6 +133,13 @@ export default function Home() {
           </div>
         </div>
       </motion.footer>
+
+      {/* 系统设置模态框 */}
+      <AnimatePresence>
+        {showSettings && (
+          <SystemSettings onClose={() => setShowSettings(false)} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

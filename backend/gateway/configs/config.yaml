@@ -1,0 +1,215 @@
+# API Gateway Configuration
+
+server:
+  host: "0.0.0.0"
+  port: 8080
+  mode: "debug"  # debug, release, test
+  readTimeout: "30s"
+  writeTimeout: "30s"
+  idleTimeout: "120s"
+
+# 服务发现配置
+services:
+  auth:
+    url: "http://localhost:8081"
+    healthCheck: "/health"
+    timeout: "10s"
+    retries: 3
+  
+  user:
+    url: "http://localhost:8001"
+    healthCheck: "/health"
+    timeout: "10s"
+    retries: 3
+  
+  forum:
+    url: "http://localhost:8082"
+    healthCheck: "/health"
+    timeout: "10s"
+    retries: 3
+  
+  message:
+    url: "http://localhost:8083"
+    healthCheck: "/health"
+    timeout: "10s"
+    retries: 3
+  
+  report:
+    url: "http://localhost:8002"
+    healthCheck: "/health"
+    timeout: "10s"
+    retries: 3
+  
+  pokemon:
+    url: "http://localhost:8084"
+    healthCheck: "/health"
+    timeout: "10s"
+    retries: 3
+  
+  fileStorage:
+    url: "http://localhost:8085"
+    healthCheck: "/health"
+    timeout: "10s"
+    retries: 3
+
+# Redis配置
+redis:
+  host: "localhost"
+  port: 6379
+  password: ""
+  db: 0
+  poolSize: 10
+  minIdleConns: 2
+  dialTimeout: "5s"
+  readTimeout: "3s"
+  writeTimeout: "3s"
+
+# JWT配置
+jwt:
+  secret: "snowfall-guild-jwt-secret-key-32-chars-minimum-for-security"
+  accessTokenTTL: "24h"
+  refreshTokenTTL: "168h"
+  issuer: "snowfall-guild"
+  audience: "snowfall-guild-users"
+
+# CORS配置
+cors:
+  allowOrigins:
+    - "http://localhost:3000"
+    - "http://localhost:3001"
+    - "https://snowfall-guild.com"
+  allowMethods:
+    - "GET"
+    - "POST"
+    - "PUT"
+    - "DELETE"
+    - "OPTIONS"
+    - "PATCH"
+  allowHeaders:
+    - "Origin"
+    - "Content-Type"
+    - "Accept"
+    - "Authorization"
+    - "X-Requested-With"
+    - "X-Request-ID"
+  exposeHeaders:
+    - "X-Request-ID"
+    - "X-Response-Time"
+    - "X-Rate-Limit-Remaining"
+  allowCredentials: true
+  maxAge: 86400
+
+# 限流配置
+rateLimit:
+  enabled: true
+  rps: 100
+  burst: 200
+  window: "1m"
+
+# 日志配置
+log:
+  level: "info"  # debug, info, warn, error
+  format: "json"  # json, text
+  output: "stdout"  # stdout, file
+  filePath: "./logs/gateway.log"
+  maxSize: 100  # MB
+  maxBackups: 3
+  maxAge: 28  # days
+  compress: true
+
+# 安全配置
+security:
+  passwordMinLength: 8
+  passwordRequireSpecial: true
+  passwordRequireNumber: true
+  passwordRequireUpper: true
+  passwordRequireLower: true
+  maxLoginAttempts: 5
+  lockoutDuration: "15m"
+  twoFactorEnabled: false
+
+# 监控配置
+monitoring:
+  enabled: true
+  metricsPath: "/metrics"
+  healthPath: "/health"
+  readinessPath: "/ready"
+  livenessPath: "/live"
+
+# 负载均衡配置
+loadBalancer:
+  strategy: "round_robin"  # round_robin, least_connections, ip_hash
+  healthCheckInterval: "30s"
+  maxRetries: 3
+  retryDelay: "1s"
+
+# 缓存配置
+cache:
+  enabled: true
+  defaultTTL: "5m"
+  maxSize: 1000
+  routes:
+    - path: "/api/v1/pokemon/*"
+      ttl: "1h"
+    - path: "/api/v1/users/*/profile"
+      ttl: "10m"
+
+# 路由配置
+routes:
+  # 认证服务路由
+  - path: "/api/v1/auth/*"
+    service: "auth"
+    stripPrefix: false
+    timeout: "30s"
+    retries: 3
+  
+  # 用户服务路由
+  - path: "/api/v1/users/*"
+    service: "user"
+    stripPrefix: false
+    timeout: "30s"
+    retries: 3
+    requireAuth: true
+  
+  # 论坛服务路由
+  - path: "/api/v1/forum/*"
+    service: "forum"
+    stripPrefix: false
+    timeout: "30s"
+    retries: 3
+    requireAuth: true
+  
+  # 消息服务路由
+  - path: "/api/v1/messages/*"
+    service: "message"
+    stripPrefix: false
+    timeout: "30s"
+    retries: 3
+    requireAuth: true
+  
+  # 报表服务路由
+  - path: "/api/v1/reports/*"
+    service: "report"
+    stripPrefix: false
+    timeout: "60s"
+    retries: 2
+    requireAuth: true
+    permissions:
+      - "VIEW_REPORTS"
+  
+  # Pokemon数据服务路由
+  - path: "/api/v1/pokemon/*"
+    service: "pokemon"
+    stripPrefix: false
+    timeout: "30s"
+    retries: 3
+  
+  # 文件存储服务路由
+  - path: "/api/v1/files/*"
+    service: "fileStorage"
+    stripPrefix: false
+    timeout: "60s"
+    retries: 2
+    requireAuth: true
+    permissions:
+      - "USER_READ"

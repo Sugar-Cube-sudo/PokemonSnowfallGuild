@@ -1,0 +1,216 @@
+# Authentication Service Configuration
+
+server:
+  host: "0.0.0.0"
+  port: 8081
+  mode: "debug"  # debug, release, test
+  readTimeout: "30s"
+  writeTimeout: "30s"
+  idleTimeout: "120s"
+
+# 数据库配置
+database:
+  driver: "postgres"  # postgres, mysql, sqlite
+  host: "localhost"
+  port: 5432
+  username: "postgres"
+  password: "password"
+  dbname: "snowfall_auth"
+  sslmode: "disable"
+  timezone: "UTC"
+  maxOpenConns: 25
+  maxIdleConns: 5
+  connMaxLifetime: "1h"
+  connMaxIdleTime: "30m"
+  autoMigrate: true
+
+# Redis配置
+redis:
+  host: "localhost"
+  port: 6379
+  password: ""
+  db: 1  # 使用db 1，避免与网关冲突
+  poolSize: 10
+  minIdleConns: 2
+  dialTimeout: "5s"
+  readTimeout: "3s"
+  writeTimeout: "3s"
+
+# JWT配置
+jwt:
+  secret: "your-jwt-secret-key-change-in-production-auth-service"
+  accessTokenTTL: "24h"
+  refreshTokenTTL: "168h"  # 7天
+  issuer: "snowfall-guild-auth"
+  audience: "snowfall-guild-users"
+  algorithm: "HS256"
+
+# 密码策略
+password:
+  minLength: 8
+  maxLength: 128
+  requireUppercase: true
+  requireLowercase: true
+  requireNumbers: true
+  requireSpecialChars: true
+  specialChars: "!@#$%^&*()_+-=[]{}|;:,.<>?"
+  maxAttempts: 5
+  lockoutDuration: "15m"
+  historyCount: 5  # 记住最近5个密码
+
+# 会话配置
+session:
+  maxConcurrentSessions: 5
+  sessionTimeout: "24h"
+  refreshThreshold: "1h"  # 在过期前1小时自动刷新
+  cleanupInterval: "1h"
+
+# 双因素认证
+twoFactor:
+  enabled: true
+  issuer: "Pokemon Snowfall Guild"
+  digits: 6
+  period: 30
+  skew: 1
+  qrCodeSize: 256
+
+# 邮箱验证
+email:
+  enabled: true
+  verificationRequired: true
+  verificationTTL: "24h"
+  resendCooldown: "5m"
+  maxResendAttempts: 3
+  templates:
+    verification: "email_verification"
+    passwordReset: "password_reset"
+    welcome: "welcome"
+
+# 短信验证
+sms:
+  enabled: false
+  provider: "twilio"  # twilio, aliyun, tencent
+  verificationTTL: "10m"
+  resendCooldown: "1m"
+  maxResendAttempts: 3
+
+# OAuth配置
+oauth:
+  providers:
+    google:
+      enabled: true
+      clientId: "your-google-client-id"
+      clientSecret: "your-google-client-secret"
+      redirectURL: "http://localhost:8081/api/v1/auth/oauth/google/callback"
+      scopes:
+        - "openid"
+        - "profile"
+        - "email"
+    
+    github:
+      enabled: true
+      clientId: "your-github-client-id"
+      clientSecret: "your-github-client-secret"
+      redirectURL: "http://localhost:8081/api/v1/auth/oauth/github/callback"
+      scopes:
+        - "user:email"
+        - "read:user"
+    
+    discord:
+      enabled: true
+      clientId: "your-discord-client-id"
+      clientSecret: "your-discord-client-secret"
+      redirectURL: "http://localhost:8081/api/v1/auth/oauth/discord/callback"
+      scopes:
+        - "identify"
+        - "email"
+
+# 安全配置
+security:
+  rateLimiting:
+    enabled: true
+    loginAttempts:
+      maxAttempts: 5
+      window: "15m"
+      blockDuration: "15m"
+    registration:
+      maxAttempts: 3
+      window: "1h"
+      blockDuration: "1h"
+    passwordReset:
+      maxAttempts: 3
+      window: "1h"
+      blockDuration: "1h"
+  
+  encryption:
+    algorithm: "AES-256-GCM"
+    keyRotationInterval: "30d"
+  
+  audit:
+    enabled: true
+    logLevel: "info"
+    retentionDays: 90
+    sensitiveFields:
+      - "password"
+      - "token"
+      - "secret"
+
+# 日志配置
+log:
+  level: "info"  # debug, info, warn, error
+  format: "json"  # json, text
+  output: "stdout"  # stdout, file
+  filePath: "./logs/auth.log"
+  maxSize: 100  # MB
+  maxBackups: 3
+  maxAge: 28  # days
+  compress: true
+
+# 监控配置
+monitoring:
+  enabled: true
+  metricsPath: "/metrics"
+  healthPath: "/health"
+  readinessPath: "/ready"
+  livenessPath: "/live"
+
+# 外部服务配置
+externalServices:
+  userService:
+    url: "http://localhost:8001"
+    timeout: "10s"
+    retries: 3
+  
+  emailService:
+    url: "http://localhost:8086"
+    timeout: "30s"
+    retries: 2
+  
+  smsService:
+    url: "http://localhost:8087"
+    timeout: "30s"
+    retries: 2
+
+# 缓存配置
+cache:
+  enabled: true
+  defaultTTL: "5m"
+  userCache:
+    ttl: "10m"
+    maxSize: 1000
+  sessionCache:
+    ttl: "1h"
+    maxSize: 5000
+  tokenBlacklist:
+    ttl: "24h"
+    maxSize: 10000
+
+# 开发配置
+development:
+  enableSwagger: true
+  enablePprof: true
+  enableCORS: true
+  allowedOrigins:
+    - "http://localhost:3000"
+    - "http://localhost:3001"
+  mockExternalServices: false

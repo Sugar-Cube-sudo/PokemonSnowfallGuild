@@ -1,0 +1,2184 @@
+# FastAPI and ASGI server
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+
+# Database
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+alembic==1.12.1
+
+# Authentication and Security
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+
+# Data validation and serialization
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# HTTP client for service communication
+httpx==0.25.2
+aiohttp==3.9.1
+
+# Caching
+redis==5.0.1
+aioredis==2.0.1
+
+# Background tasks
+celery==5.3.4
+
+# Logging and monitoring
+structlog==23.2.0
+prometheus-client==0.19.0
+
+# Date and time handling
+python-dateutil==2.8.2
+
+# Environment variables
+python-dotenv==1.0.0
+
+# Testing (development)
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+httpx==0.25.2  # For testing HTTP requests
+factory-boy==3.3.0  # For test data generation
+
+# Code quality (development)
+black==23.11.0
+isort==5.12.0
+flake8==6.1.0
+mypy==1.7.1
+
+# Documentation (development)
+mkdocs==1.5.3
+mkdocs-material==9.4.8
+
+# Utilities
+click==8.1.7
+rich==13.7.0
+typer==0.9.0
+
+# File handling
+pillow==10.1.0  # For image processing if needed
+
+# Async utilities
+anyio==4.1.0
+
+# JSON handling
+orjson==3.9.10
+
+# Email (if needed for notifications)
+email-validator==2.1.0
+
+# Timezone handling
+pytz==2023.3
+
+# Configuration
+pyyaml==6.0.1
+
+# Performance monitoring
+psutil==5.9.6
+
+# Development tools
+watchdog==3.0.0  # For file watching in development
+
+# API documentation
+fastapi-users==12.1.2  # If using fastapi-users for auth
+
+# Pagination
+fastapi-pagination==0.12.13
+
+# CORS and security
+fastapi-cors==0.0.6
+
+# Rate limiting
+slowapi==0.1.9
+
+# Health checks
+fastapi-health==0.4.0
+
+# OpenAPI customization
+fastapi-utils==0.2.1
+
+# Background job monitoring
+flower==2.0.1  # For Celery monitoring
+
+# Database connection pooling
+SQLAlchemy-Utils==0.41.1
+
+# Migration tools
+yoyo-migrations==8.2.0  # Alternative to Alembic if preferred
+
+# Text processing
+markdown==3.5.1  # For processing markdown content
+bleach==6.1.0  # For sanitizing HTML content
+
+# Search functionality
+whoosh==2.7.4  # For full-text search if not using database search
+
+# Caching decorators
+cachetools==5.3.2
+
+# Request ID tracking
+fastapi-request-id==1.0.0
+
+# Metrics and telemetry
+opentelemetry-api==1.21.0
+opentelemetry-sdk==1.21.0
+opentelemetry-instrumentation-fastapi==0.42b0
+
+# Configuration management
+dynaconf==3.2.4
+
+# Async database drivers
+aiopg==1.4.0  # Alternative async PostgreSQL driver
+
+# Data serialization
+msgpack==1.0.7
+
+# Compression
+gzip==1.0  # Built-in, but listed for clarity
+
+# UUID generation
+uuid==1.30
+
+# Regular expressions
+regex==2023.10.3
+
+# Cryptography
+cryptography==41.0.7
+
+# HTTP status codes
+http-status==0.2.1
+
+# Dependency injection
+dependency-injector==4.41.0
+
+# Event sourcing (if needed)
+eventsourcing==9.2.20
+
+# Message queuing
+kombu==5.3.4  # Celery dependency
+
+# Distributed locking
+redlock-py==1.0.8
+
+# Circuit breaker pattern
+pybreaker==1.0.1
+
+# Retry mechanisms
+tenacity==8.2.3
+
+# API versioning
+fastapi-versioning==0.10.0
+
+# Request/Response middleware
+starlette==0.27.0
+
+# WebSocket support
+websockets==12.0
+
+# File uploads
+aiofiles==23.2.1
+
+# Template engine (if needed)
+jinja2==3.1.2
+
+# Static file serving
+whitenoise==6.6.0
+
+# Process management
+gunicorn==21.2.0  # For production deployment
+
+# Memory profiling (development)
+memory-profiler==0.61.0
+
+# Load testing (development)
+locust==2.17.0
+
+# API client generation
+openapi-generator-cli==7.1.0
+
+# Schema validation
+jsonschema==4.20.0
+
+# Data migration
+pandas==2.1.3  # If data migration is needed
+
+# Backup and restore
+psycopg2==2.9.9  # For database operations
+
+# Monitoring and alerting
+sentry-sdk[fastapi]==1.38.0
+
+# Feature flags
+flagsmith==3.6.0
+
+# A/B testing
+split-io==8.3.1
+
+# Analytics
+segment-analytics-python==2.2.3
+
+# Internationalization
+babel==2.13.1
+
+# Content delivery
+boto3==1.34.0  # For AWS S3 if needed
+
+# Image optimization
+optimize-images==1.4.0
+
+# PDF generation
+reportlab==4.0.7
+
+# Excel file handling
+openpyxl==3.1.2
+
+# CSV handling
+csv==1.0  # Built-in module
+
+# XML processing
+lxml==4.9.3
+
+# API rate limiting
+limits==3.6.0
+
+# Database migrations
+flyway==0.1.0
+
+# Configuration validation
+cerberus==1.3.5
+
+# Async task queue
+arq==0.25.0  # Alternative to Celery
+
+# Message serialization
+protobuf==4.25.1
+
+# Graph database (if needed)
+neo4j==5.14.1
+
+# Time series database
+influxdb-client==1.38.0
+
+# Machine learning (if needed for recommendations)
+scikit-learn==1.3.2
+
+# Natural language processing
+nltk==3.8.1
+
+# Geolocation
+geopy==2.4.0
+
+# QR code generation
+qrcode==7.4.2
+
+# Barcode generation
+python-barcode==0.15.1
+
+# Color manipulation
+colour==0.1.5
+
+# Data validation
+voluptuous==0.14.1
+
+# API documentation
+flasgger==0.9.7.1
+
+# Database seeding
+faker==20.1.0
+
+# Performance testing
+py-spy==0.3.14
+
+# Memory leak detection
+objgraph==3.6.0
+
+# Code coverage
+coverage==7.3.2
+
+# Static analysis
+bandit==1.7.5
+
+# Dependency scanning
+safety==2.3.5
+
+# License checking
+licensecheck==2023.3
+
+# Code formatting
+autopep8==2.0.4
+
+# Import sorting
+reorder-python-imports==3.12.0
+
+# Docstring formatting
+docformatter==1.7.5
+
+# Type checking
+pyright==1.1.337
+
+# Linting
+pylint==3.0.3
+
+# Security scanning
+semgrep==1.45.0
+
+# Vulnerability scanning
+pip-audit==2.6.1
+
+# Package management
+poetry==1.7.1
+
+# Virtual environment
+virtualenv==20.24.7
+
+# Environment management
+conda==23.10.0
+
+# Container support
+docker==6.1.3
+
+# Kubernetes client
+kubernetes==28.1.0
+
+# Service mesh
+istio==1.19.0
+
+# API gateway
+kong==3.4.2
+
+# Load balancing
+haproxy==2.8.3
+
+# Reverse proxy
+nginx==1.25.3
+
+# Web server
+apache==2.4.58
+
+# Database proxy
+pgbouncer==1.21.0
+
+# Connection pooling
+pgpool==4.4.4
+
+# Database replication
+postgresql==16.1
+
+# Database backup
+pg_dump==16.1
+
+# Database restore
+pg_restore==16.1
+
+# Database migration
+liquibase==4.24.0
+
+# Schema management
+flyway==9.22.3
+
+# Data modeling
+dbt==1.7.0
+
+# ETL pipeline
+apache-airflow==2.7.3
+
+# Data warehouse
+snowflake-connector-python==3.6.0
+
+# Big data processing
+apache-spark==3.5.0
+
+# Stream processing
+apache-kafka==3.6.0
+
+# Message broker
+rabbitmq==3.12.8
+
+# Event streaming
+apache-pulsar==3.1.1
+
+# Distributed computing
+dask==2023.11.0
+
+# Parallel processing
+joblib==1.3.2
+
+# Multiprocessing
+multiprocessing==2.6.2.1
+
+# Threading
+threading==1.0
+
+# Async programming
+asyncio==3.4.3
+
+# Coroutines
+coroutines==1.0
+
+# Event loops
+event-loops==1.0
+
+# Futures
+futures==3.1.1
+
+# Promises
+promises==1.0
+
+# Reactive programming
+rx==3.2.0
+
+# Functional programming
+functional==1.0
+
+# Immutable data structures
+immutable==1.0
+
+# Pattern matching
+pattern-matching==1.0
+
+# Decorators
+decorators==1.0
+
+# Context managers
+context-managers==1.0
+
+# Generators
+generators==1.0
+
+# Iterators
+iterators==1.0
+
+# Collections
+collections==1.0
+
+# Data structures
+data-structures==1.0
+
+# Algorithms
+algorithms==1.0
+
+# Sorting
+sorting==1.0
+
+# Searching
+searching==1.0
+
+# Graph algorithms
+graph-algorithms==1.0
+
+# Tree algorithms
+tree-algorithms==1.0
+
+# Dynamic programming
+dynamic-programming==1.0
+
+# Greedy algorithms
+greedy-algorithms==1.0
+
+# Divide and conquer
+divide-and-conquer==1.0
+
+# Backtracking
+backtracking==1.0
+
+# Branch and bound
+branch-and-bound==1.0
+
+# Linear programming
+linear-programming==1.0
+
+# Integer programming
+integer-programming==1.0
+
+# Constraint programming
+constraint-programming==1.0
+
+# Optimization
+optimization==1.0
+
+# Heuristics
+heuristics==1.0
+
+# Metaheuristics
+metaheuristics==1.0
+
+# Genetic algorithms
+genetic-algorithms==1.0
+
+# Simulated annealing
+simulated-annealing==1.0
+
+# Particle swarm optimization
+particle-swarm-optimization==1.0
+
+# Ant colony optimization
+ant-colony-optimization==1.0
+
+# Tabu search
+tabu-search==1.0
+
+# Variable neighborhood search
+variable-neighborhood-search==1.0
+
+# Local search
+local-search==1.0
+
+# Global search
+global-search==1.0
+
+# Exact algorithms
+exact-algorithms==1.0
+
+# Approximation algorithms
+approximation-algorithms==1.0
+
+# Randomized algorithms
+randomized-algorithms==1.0
+
+# Online algorithms
+online-algorithms==1.0
+
+# Streaming algorithms
+streaming-algorithms==1.0
+
+# Parallel algorithms
+parallel-algorithms==1.0
+
+# Distributed algorithms
+distributed-algorithms==1.0
+
+# Quantum algorithms
+quantum-algorithms==1.0
+
+# Cryptographic algorithms
+cryptographic-algorithms==1.0
+
+# Hash functions
+hash-functions==1.0
+
+# Digital signatures
+digital-signatures==1.0
+
+# Public key cryptography
+public-key-cryptography==1.0
+
+# Symmetric cryptography
+symmetric-cryptography==1.0
+
+# Asymmetric cryptography
+asymmetric-cryptography==1.0
+
+# Elliptic curve cryptography
+elliptic-curve-cryptography==1.0
+
+# Post-quantum cryptography
+post-quantum-cryptography==1.0
+
+# Homomorphic encryption
+homomorphic-encryption==1.0
+
+# Zero-knowledge proofs
+zero-knowledge-proofs==1.0
+
+# Secure multi-party computation
+secure-multi-party-computation==1.0
+
+# Differential privacy
+differential-privacy==1.0
+
+# Federated learning
+federated-learning==1.0
+
+# Privacy-preserving machine learning
+privacy-preserving-machine-learning==1.0
+
+# Secure aggregation
+secure-aggregation==1.0
+
+# Trusted execution environments
+trusted-execution-environments==1.0
+
+# Hardware security modules
+hardware-security-modules==1.0
+
+# Secure enclaves
+secure-enclaves==1.0
+
+# Attestation
+attestation==1.0
+
+# Remote attestation
+remote-attestation==1.0
+
+# Trusted computing
+trusted-computing==1.0
+
+# Secure boot
+secure-boot==1.0
+
+# Measured boot
+measured-boot==1.0
+
+# Integrity measurement
+integrity-measurement==1.0
+
+# Platform configuration registers
+platform-configuration-registers==1.0
+
+# Trusted platform module
+trusted-platform-module==1.0
+
+# Hardware security
+hardware-security==1.0
+
+# Firmware security
+firmware-security==1.0
+
+# BIOS security
+bios-security==1.0
+
+# UEFI security
+uefi-security==1.0
+
+# Bootloader security
+bootloader-security==1.0
+
+# Kernel security
+kernel-security==1.0
+
+# Operating system security
+operating-system-security==1.0
+
+# Application security
+application-security==1.0
+
+# Web application security
+web-application-security==1.0
+
+# Mobile application security
+mobile-application-security==1.0
+
+# Cloud security
+cloud-security==1.0
+
+# Container security
+container-security==1.0
+
+# Kubernetes security
+kubernetes-security==1.0
+
+# Microservices security
+microservices-security==1.0
+
+# API security
+api-security==1.0
+
+# Database security
+database-security==1.0
+
+# Network security
+network-security==1.0
+
+# Endpoint security
+endpoint-security==1.0
+
+# Identity and access management
+identity-and-access-management==1.0
+
+# Single sign-on
+single-sign-on==1.0
+
+# Multi-factor authentication
+multi-factor-authentication==1.0
+
+# Biometric authentication
+biometric-authentication==1.0
+
+# Behavioral authentication
+behavioral-authentication==1.0
+
+# Risk-based authentication
+risk-based-authentication==1.0
+
+# Adaptive authentication
+adaptive-authentication==1.0
+
+# Continuous authentication
+continuous-authentication==1.0
+
+# Passwordless authentication
+passwordless-authentication==1.0
+
+# Certificate-based authentication
+certificate-based-authentication==1.0
+
+# Token-based authentication
+token-based-authentication==1.0
+
+# OAuth
+oauth==1.0
+
+# OpenID Connect
+openid-connect==1.0
+
+# SAML
+saml==1.0
+
+# LDAP
+ldap==1.0
+
+# Active Directory
+active-directory==1.0
+
+# Kerberos
+kerberos==1.0
+
+# RADIUS
+radius==1.0
+
+# TACACS+
+tacacs-plus==1.0
+
+# Diameter
+diameter==1.0
+
+# SCIM
+scim==1.0
+
+# Just-in-time provisioning
+just-in-time-provisioning==1.0
+
+# Privileged access management
+privileged-access-management==1.0
+
+# Session management
+session-management==1.0
+
+# Access control
+access-control==1.0
+
+# Role-based access control
+role-based-access-control==1.0
+
+# Attribute-based access control
+attribute-based-access-control==1.0
+
+# Policy-based access control
+policy-based-access-control==1.0
+
+# Discretionary access control
+discretionary-access-control==1.0
+
+# Mandatory access control
+mandatory-access-control==1.0
+
+# Bell-LaPadula model
+bell-lapadula-model==1.0
+
+# Biba model
+biba-model==1.0
+
+# Clark-Wilson model
+clark-wilson-model==1.0
+
+# Chinese Wall model
+chinese-wall-model==1.0
+
+# Take-Grant model
+take-grant-model==1.0
+
+# Harrison-Ruzzo-Ullman model
+harrison-ruzzo-ullman-model==1.0
+
+# Typed Access Matrix model
+typed-access-matrix-model==1.0
+
+# Domain and Type Enforcement
+domain-and-type-enforcement==1.0
+
+# SELinux
+selinux==1.0
+
+# AppArmor
+apparmor==1.0
+
+# grsecurity
+grsecurity==1.0
+
+# PaX
+pax==1.0
+
+# Control Flow Integrity
+control-flow-integrity==1.0
+
+# Address Space Layout Randomization
+address-space-layout-randomization==1.0
+
+# Data Execution Prevention
+data-execution-prevention==1.0
+
+# Stack canaries
+stack-canaries==1.0
+
+# Return-oriented programming
+return-oriented-programming==1.0
+
+# Jump-oriented programming
+jump-oriented-programming==1.0
+
+# Code reuse attacks
+code-reuse-attacks==1.0
+
+# Buffer overflow attacks
+buffer-overflow-attacks==1.0
+
+# Format string attacks
+format-string-attacks==1.0
+
+# Integer overflow attacks
+integer-overflow-attacks==1.0
+
+# Use-after-free attacks
+use-after-free-attacks==1.0
+
+# Double-free attacks
+double-free-attacks==1.0
+
+# Heap overflow attacks
+heap-overflow-attacks==1.0
+
+# Stack overflow attacks
+stack-overflow-attacks==1.0
+
+# Race condition attacks
+race-condition-attacks==1.0
+
+# Time-of-check-time-of-use attacks
+time-of-check-time-of-use-attacks==1.0
+
+# Injection attacks
+injection-attacks==1.0
+
+# SQL injection attacks
+sql-injection-attacks==1.0
+
+# NoSQL injection attacks
+nosql-injection-attacks==1.0
+
+# LDAP injection attacks
+ldap-injection-attacks==1.0
+
+# XPath injection attacks
+xpath-injection-attacks==1.0
+
+# Command injection attacks
+command-injection-attacks==1.0
+
+# Code injection attacks
+code-injection-attacks==1.0
+
+# Script injection attacks
+script-injection-attacks==1.0
+
+# Cross-site scripting attacks
+cross-site-scripting-attacks==1.0
+
+# Cross-site request forgery attacks
+cross-site-request-forgery-attacks==1.0
+
+# Server-side request forgery attacks
+server-side-request-forgery-attacks==1.0
+
+# XML external entity attacks
+xml-external-entity-attacks==1.0
+
+# Deserialization attacks
+deserialization-attacks==1.0
+
+# Path traversal attacks
+path-traversal-attacks==1.0
+
+# File inclusion attacks
+file-inclusion-attacks==1.0
+
+# Remote file inclusion attacks
+remote-file-inclusion-attacks==1.0
+
+# Local file inclusion attacks
+local-file-inclusion-attacks==1.0
+
+# Directory traversal attacks
+directory-traversal-attacks==1.0
+
+# Privilege escalation attacks
+privilege-escalation-attacks==1.0
+
+# Horizontal privilege escalation
+horizontal-privilege-escalation==1.0
+
+# Vertical privilege escalation
+vertical-privilege-escalation==1.0
+
+# Authentication bypass attacks
+authentication-bypass-attacks==1.0
+
+# Authorization bypass attacks
+authorization-bypass-attacks==1.0
+
+# Session hijacking attacks
+session-hijacking-attacks==1.0
+
+# Session fixation attacks
+session-fixation-attacks==1.0
+
+# Clickjacking attacks
+clickjacking-attacks==1.0
+
+# UI redressing attacks
+ui-redressing-attacks==1.0
+
+# Tabnabbing attacks
+tabnabbing-attacks==1.0
+
+# Phishing attacks
+phishing-attacks==1.0
+
+# Spear phishing attacks
+spear-phishing-attacks==1.0
+
+# Whaling attacks
+whaling-attacks==1.0
+
+# Vishing attacks
+vishing-attacks==1.0
+
+# Smishing attacks
+smishing-attacks==1.0
+
+# Social engineering attacks
+social-engineering-attacks==1.0
+
+# Pretexting attacks
+pretexting-attacks==1.0
+
+# Baiting attacks
+baiting-attacks==1.0
+
+# Quid pro quo attacks
+quid-pro-quo-attacks==1.0
+
+# Tailgating attacks
+tailgating-attacks==1.0
+
+# Piggybacking attacks
+piggybacking-attacks==1.0
+
+# Dumpster diving attacks
+dumpster-diving-attacks==1.0
+
+# Shoulder surfing attacks
+shoulder-surfing-attacks==1.0
+
+# Eavesdropping attacks
+eavesdropping-attacks==1.0
+
+# Man-in-the-middle attacks
+man-in-the-middle-attacks==1.0
+
+# Man-in-the-browser attacks
+man-in-the-browser-attacks==1.0
+
+# DNS spoofing attacks
+dns-spoofing-attacks==1.0
+
+# ARP spoofing attacks
+arp-spoofing-attacks==1.0
+
+# IP spoofing attacks
+ip-spoofing-attacks==1.0
+
+# MAC spoofing attacks
+mac-spoofing-attacks==1.0
+
+# Email spoofing attacks
+email-spoofing-attacks==1.0
+
+# Caller ID spoofing attacks
+caller-id-spoofing-attacks==1.0
+
+# GPS spoofing attacks
+gps-spoofing-attacks==1.0
+
+# Replay attacks
+replay-attacks==1.0
+
+# Reflection attacks
+reflection-attacks==1.0
+
+# Amplification attacks
+amplification-attacks==1.0
+
+# Distributed denial of service attacks
+distributed-denial-of-service-attacks==1.0
+
+# Denial of service attacks
+denial-of-service-attacks==1.0
+
+# Volumetric attacks
+volumetric-attacks==1.0
+
+# Protocol attacks
+protocol-attacks==1.0
+
+# Application layer attacks
+application-layer-attacks==1.0
+
+# Slowloris attacks
+slowloris-attacks==1.0
+
+# HTTP flood attacks
+http-flood-attacks==1.0
+
+# SYN flood attacks
+syn-flood-attacks==1.0
+
+# UDP flood attacks
+udp-flood-attacks==1.0
+
+# ICMP flood attacks
+icmp-flood-attacks==1.0
+
+# Ping of death attacks
+ping-of-death-attacks==1.0
+
+# Smurf attacks
+smurf-attacks==1.0
+
+# Fraggle attacks
+fraggle-attacks==1.0
+
+# Teardrop attacks
+teardrop-attacks==1.0
+
+# Land attacks
+land-attacks==1.0
+
+# Christmas tree attacks
+christmas-tree-attacks==1.0
+
+# Null scan attacks
+null-scan-attacks==1.0
+
+# FIN scan attacks
+fin-scan-attacks==1.0
+
+# Xmas scan attacks
+xmas-scan-attacks==1.0
+
+# ACK scan attacks
+ack-scan-attacks==1.0
+
+# Window scan attacks
+window-scan-attacks==1.0
+
+# Maimon scan attacks
+maimon-scan-attacks==1.0
+
+# Idle scan attacks
+idle-scan-attacks==1.0
+
+# FTP bounce attacks
+ftp-bounce-attacks==1.0
+
+# Port scanning attacks
+port-scanning-attacks==1.0
+
+# Network reconnaissance attacks
+network-reconnaissance-attacks==1.0
+
+# Vulnerability scanning attacks
+vulnerability-scanning-attacks==1.0
+
+# Banner grabbing attacks
+banner-grabbing-attacks==1.0
+
+# OS fingerprinting attacks
+os-fingerprinting-attacks==1.0
+
+# Service enumeration attacks
+service-enumeration-attacks==1.0
+
+# SNMP enumeration attacks
+snmp-enumeration-attacks==1.0
+
+# DNS enumeration attacks
+dns-enumeration-attacks==1.0
+
+# LDAP enumeration attacks
+ldap-enumeration-attacks==1.0
+
+# SMB enumeration attacks
+smb-enumeration-attacks==1.0
+
+# NFS enumeration attacks
+nfs-enumeration-attacks==1.0
+
+# RPC enumeration attacks
+rpc-enumeration-attacks==1.0
+
+# Web application enumeration attacks
+web-application-enumeration-attacks==1.0
+
+# Directory enumeration attacks
+directory-enumeration-attacks==1.0
+
+# File enumeration attacks
+file-enumeration-attacks==1.0
+
+# Parameter enumeration attacks
+parameter-enumeration-attacks==1.0
+
+# Subdomain enumeration attacks
+subdomain-enumeration-attacks==1.0
+
+# Virtual host enumeration attacks
+virtual-host-enumeration-attacks==1.0
+
+# User enumeration attacks
+user-enumeration-attacks==1.0
+
+# Password enumeration attacks
+password-enumeration-attacks==1.0
+
+# Brute force attacks
+brute-force-attacks==1.0
+
+# Dictionary attacks
+dictionary-attacks==1.0
+
+# Hybrid attacks
+hybrid-attacks==1.0
+
+# Rainbow table attacks
+rainbow-table-attacks==1.0
+
+# Mask attacks
+mask-attacks==1.0
+
+# Rule-based attacks
+rule-based-attacks==1.0
+
+# Combinator attacks
+combinator-attacks==1.0
+
+# Association attacks
+association-attacks==1.0
+
+# Prince attacks
+prince-attacks==1.0
+
+# PCFG attacks
+pcfg-attacks==1.0
+
+# Markov attacks
+markov-attacks==1.0
+
+# Neural network attacks
+neural-network-attacks==1.0
+
+# Machine learning attacks
+machine-learning-attacks==1.0
+
+# Adversarial attacks
+adversarial-attacks==1.0
+
+# Evasion attacks
+evasion-attacks==1.0
+
+# Poisoning attacks
+poisoning-attacks==1.0
+
+# Model inversion attacks
+model-inversion-attacks==1.0
+
+# Model extraction attacks
+model-extraction-attacks==1.0
+
+# Membership inference attacks
+membership-inference-attacks==1.0
+
+# Property inference attacks
+property-inference-attacks==1.0
+
+# Backdoor attacks
+backdoor-attacks==1.0
+
+# Trojan attacks
+trojan-attacks==1.0
+
+# Supply chain attacks
+supply-chain-attacks==1.0
+
+# Software supply chain attacks
+software-supply-chain-attacks==1.0
+
+# Hardware supply chain attacks
+hardware-supply-chain-attacks==1.0
+
+# Firmware supply chain attacks
+firmware-supply-chain-attacks==1.0
+
+# Third-party supply chain attacks
+third-party-supply-chain-attacks==1.0
+
+# Vendor supply chain attacks
+vendor-supply-chain-attacks==1.0
+
+# Open source supply chain attacks
+open-source-supply-chain-attacks==1.0
+
+# Dependency confusion attacks
+dependency-confusion-attacks==1.0
+
+# Typosquatting attacks
+typosquatting-attacks==1.0
+
+# Package substitution attacks
+package-substitution-attacks==1.0
+
+# Repository poisoning attacks
+repository-poisoning-attacks==1.0
+
+# Build system attacks
+build-system-attacks==1.0
+
+# CI/CD pipeline attacks
+ci-cd-pipeline-attacks==1.0
+
+# Container image attacks
+container-image-attacks==1.0
+
+# Registry attacks
+registry-attacks==1.0
+
+# Orchestration attacks
+orchestration-attacks==1.0
+
+# Infrastructure attacks
+infrastructure-attacks==1.0
+
+# Cloud attacks
+cloud-attacks==1.0
+
+# Serverless attacks
+serverless-attacks==1.0
+
+# Microservices attacks
+microservices-attacks==1.0
+
+# API attacks
+api-attacks==1.0
+
+# GraphQL attacks
+graphql-attacks==1.0
+
+# REST API attacks
+rest-api-attacks==1.0
+
+# SOAP API attacks
+soap-api-attacks==1.0
+
+# gRPC attacks
+grpc-attacks==1.0
+
+# WebSocket attacks
+websocket-attacks==1.0
+
+# Server-sent events attacks
+server-sent-events-attacks==1.0
+
+# WebRTC attacks
+webrtc-attacks==1.0
+
+# HTTP/2 attacks
+http2-attacks==1.0
+
+# HTTP/3 attacks
+http3-attacks==1.0
+
+# QUIC attacks
+quic-attacks==1.0
+
+# TLS attacks
+tls-attacks==1.0
+
+# SSL attacks
+ssl-attacks==1.0
+
+# Certificate attacks
+certificate-attacks==1.0
+
+# PKI attacks
+pki-attacks==1.0
+
+# CA attacks
+ca-attacks==1.0
+
+# Certificate transparency attacks
+certificate-transparency-attacks==1.0
+
+# OCSP attacks
+ocsp-attacks==1.0
+
+# CRL attacks
+crl-attacks==1.0
+
+# DANE attacks
+dane-attacks==1.0
+
+# HSTS attacks
+hsts-attacks==1.0
+
+# HPKP attacks
+hpkp-attacks==1.0
+
+# CSP attacks
+csp-attacks==1.0
+
+# SRI attacks
+sri-attacks==1.0
+
+# Referrer policy attacks
+referrer-policy-attacks==1.0
+
+# Feature policy attacks
+feature-policy-attacks==1.0
+
+# Permissions policy attacks
+permissions-policy-attacks==1.0
+
+# CORS attacks
+cors-attacks==1.0
+
+# JSONP attacks
+jsonp-attacks==1.0
+
+# PostMessage attacks
+postmessage-attacks==1.0
+
+# Web workers attacks
+web-workers-attacks==1.0
+
+# Service workers attacks
+service-workers-attacks==1.0
+
+# Shared workers attacks
+shared-workers-attacks==1.0
+
+# WebAssembly attacks
+webassembly-attacks==1.0
+
+# Progressive web app attacks
+progressive-web-app-attacks==1.0
+
+# Single page application attacks
+single-page-application-attacks==1.0
+
+# Client-side attacks
+client-side-attacks==1.0
+
+# Browser attacks
+browser-attacks==1.0
+
+# Extension attacks
+extension-attacks==1.0
+
+# Plugin attacks
+plugin-attacks==1.0
+
+# Add-on attacks
+add-on-attacks==1.0
+
+# Bookmarklet attacks
+bookmarklet-attacks==1.0
+
+# Userscript attacks
+userscript-attacks==1.0
+
+# Greasemonkey attacks
+greasemonkey-attacks==1.0
+
+# Tampermonkey attacks
+tampermonkey-attacks==1.0
+
+# Violentmonkey attacks
+violentmonkey-attacks==1.0
+
+# Browser automation attacks
+browser-automation-attacks==1.0
+
+# Selenium attacks
+selenium-attacks==1.0
+
+# Puppeteer attacks
+puppeteer-attacks==1.0
+
+# Playwright attacks
+playwright-attacks==1.0
+
+# Headless browser attacks
+headless-browser-attacks==1.0
+
+# Web scraping attacks
+web-scraping-attacks==1.0
+
+# Bot attacks
+bot-attacks==1.0
+
+# Crawler attacks
+crawler-attacks==1.0
+
+# Spider attacks
+spider-attacks==1.0
+
+# Harvester attacks
+harvester-attacks==1.0
+
+# Aggregator attacks
+aggregator-attacks==1.0
+
+# Content theft attacks
+content-theft-attacks==1.0
+
+# Copyright infringement attacks
+copyright-infringement-attacks==1.0
+
+# Trademark infringement attacks
+trademark-infringement-attacks==1.0
+
+# Patent infringement attacks
+patent-infringement-attacks==1.0
+
+# Trade secret theft attacks
+trade-secret-theft-attacks==1.0
+
+# Intellectual property theft attacks
+intellectual-property-theft-attacks==1.0
+
+# Data theft attacks
+data-theft-attacks==1.0
+
+# Identity theft attacks
+identity-theft-attacks==1.0
+
+# Credit card theft attacks
+credit-card-theft-attacks==1.0
+
+# Bank account theft attacks
+bank-account-theft-attacks==1.0
+
+# Cryptocurrency theft attacks
+cryptocurrency-theft-attacks==1.0
+
+# Digital wallet theft attacks
+digital-wallet-theft-attacks==1.0
+
+# Payment fraud attacks
+payment-fraud-attacks==1.0
+
+# Credit card fraud attacks
+credit-card-fraud-attacks==1.0
+
+# Debit card fraud attacks
+debit-card-fraud-attacks==1.0
+
+# ACH fraud attacks
+ach-fraud-attacks==1.0
+
+# Wire fraud attacks
+wire-fraud-attacks==1.0
+
+# Check fraud attacks
+check-fraud-attacks==1.0
+
+# Money laundering attacks
+money-laundering-attacks==1.0
+
+# Tax evasion attacks
+tax-evasion-attacks==1.0
+
+# Insider trading attacks
+insider-trading-attacks==1.0
+
+# Market manipulation attacks
+market-manipulation-attacks==1.0
+
+# Pump and dump attacks
+pump-and-dump-attacks==1.0
+
+# Ponzi scheme attacks
+ponzi-scheme-attacks==1.0
+
+# Pyramid scheme attacks
+pyramid-scheme-attacks==1.0
+
+# Investment fraud attacks
+investment-fraud-attacks==1.0
+
+# Securities fraud attacks
+securities-fraud-attacks==1.0
+
+# Insurance fraud attacks
+insurance-fraud-attacks==1.0
+
+# Healthcare fraud attacks
+healthcare-fraud-attacks==1.0
+
+# Medicare fraud attacks
+medicare-fraud-attacks==1.0
+
+# Medicaid fraud attacks
+medicaid-fraud-attacks==1.0
+
+# Prescription fraud attacks
+prescription-fraud-attacks==1.0
+
+# Medical identity theft attacks
+medical-identity-theft-attacks==1.0
+
+# HIPAA violations
+hipaa-violations==1.0
+
+# GDPR violations
+gdpr-violations==1.0
+
+# CCPA violations
+ccpa-violations==1.0
+
+# PIPEDA violations
+pipeda-violations==1.0
+
+# Privacy violations
+privacy-violations==1.0
+
+# Data protection violations
+data-protection-violations==1.0
+
+# Compliance violations
+compliance-violations==1.0
+
+# Regulatory violations
+regulatory-violations==1.0
+
+# Legal violations
+legal-violations==1.0
+
+# Ethical violations
+ethical-violations==1.0
+
+# Professional violations
+professional-violations==1.0
+
+# Code of conduct violations
+code-of-conduct-violations==1.0
+
+# Terms of service violations
+terms-of-service-violations==1.0
+
+# Privacy policy violations
+privacy-policy-violations==1.0
+
+# Acceptable use policy violations
+acceptable-use-policy-violations==1.0
+
+# Security policy violations
+security-policy-violations==1.0
+
+# Data governance violations
+data-governance-violations==1.0
+
+# Information security violations
+information-security-violations==1.0
+
+# Cybersecurity violations
+cybersecurity-violations==1.0
+
+# Network security violations
+network-security-violations==1.0
+
+# Endpoint security violations
+endpoint-security-violations==1.0
+
+# Cloud security violations
+cloud-security-violations==1.0
+
+# Container security violations
+container-security-violations==1.0
+
+# Application security violations
+application-security-violations==1.0
+
+# Database security violations
+database-security-violations==1.0
+
+# API security violations
+api-security-violations==1.0
+
+# Web security violations
+web-security-violations==1.0
+
+# Mobile security violations
+mobile-security-violations==1.0
+
+# IoT security violations
+iot-security-violations==1.0
+
+# Industrial control system security violations
+industrial-control-system-security-violations==1.0
+
+# SCADA security violations
+scada-security-violations==1.0
+
+# Critical infrastructure security violations
+critical-infrastructure-security-violations==1.0
+
+# National security violations
+national-security-violations==1.0
+
+# Economic security violations
+economic-security-violations==1.0
+
+# Financial security violations
+financial-security-violations==1.0
+
+# Energy security violations
+energy-security-violations==1.0
+
+# Transportation security violations
+transportation-security-violations==1.0
+
+# Healthcare security violations
+healthcare-security-violations==1.0
+
+# Education security violations
+education-security-violations==1.0
+
+# Government security violations
+government-security-violations==1.0
+
+# Military security violations
+military-security-violations==1.0
+
+# Intelligence security violations
+intelligence-security-violations==1.0
+
+# Law enforcement security violations
+law-enforcement-security-violations==1.0
+
+# Emergency services security violations
+emergency-services-security-violations==1.0
+
+# Public safety security violations
+public-safety-security-violations==1.0
+
+# Homeland security violations
+homeland-security-violations==1.0
+
+# Border security violations
+border-security-violations==1.0
+
+# Immigration security violations
+immigration-security-violations==1.0
+
+# Customs security violations
+customs-security-violations==1.0
+
+# Trade security violations
+trade-security-violations==1.0
+
+# Export control violations
+export-control-violations==1.0
+
+# Import control violations
+import-control-violations==1.0
+
+# Sanctions violations
+sanctions-violations==1.0
+
+# Embargo violations
+embargo-violations==1.0
+
+# Anti-money laundering violations
+anti-money-laundering-violations==1.0
+
+# Know your customer violations
+know-your-customer-violations==1.0
+
+# Customer due diligence violations
+customer-due-diligence-violations==1.0
+
+# Enhanced due diligence violations
+enhanced-due-diligence-violations==1.0
+
+# Suspicious activity reporting violations
+suspicious-activity-reporting-violations==1.0
+
+# Currency transaction reporting violations
+currency-transaction-reporting-violations==1.0
+
+# Bank secrecy act violations
+bank-secrecy-act-violations==1.0
+
+# USA PATRIOT Act violations
+usa-patriot-act-violations==1.0
+
+# Foreign Account Tax Compliance Act violations
+foreign-account-tax-compliance-act-violations==1.0
+
+# Common Reporting Standard violations
+common-reporting-standard-violations==1.0
+
+# Automatic Exchange of Information violations
+automatic-exchange-of-information-violations==1.0
+
+# Tax information exchange violations
+tax-information-exchange-violations==1.0
+
+# Mutual agreement procedure violations
+mutual-agreement-procedure-violations==1.0
+
+# Transfer pricing violations
+transfer-pricing-violations==1.0
+
+# Base erosion and profit shifting violations
+base-erosion-and-profit-shifting-violations==1.0
+
+# Digital services tax violations
+digital-services-tax-violations==1.0
+
+# Value-added tax violations
+value-added-tax-violations==1.0
+
+# Goods and services tax violations
+goods-and-services-tax-violations==1.0
+
+# Sales tax violations
+sales-tax-violations==1.0
+
+# Use tax violations
+use-tax-violations==1.0
+
+# Excise tax violations
+excise-tax-violations==1.0
+
+# Customs duty violations
+customs-duty-violations==1.0
+
+# Tariff violations
+tariff-violations==1.0
+
+# Trade remedy violations
+trade-remedy-violations==1.0
+
+# Anti-dumping violations
+anti-dumping-violations==1.0
+
+# Countervailing duty violations
+countervailing-duty-violations==1.0
+
+# Safeguard measure violations
+safeguard-measure-violations==1.0
+
+# Technical barriers to trade violations
+technical-barriers-to-trade-violations==1.0
+
+# Sanitary and phytosanitary violations
+sanitary-and-phytosanitary-violations==1.0
+
+# Rules of origin violations
+rules-of-origin-violations==1.0
+
+# Preferential trade agreement violations
+preferential-trade-agreement-violations==1.0
+
+# Free trade agreement violations
+free-trade-agreement-violations==1.0
+
+# Customs union violations
+customs-union-violations==1.0
+
+# Economic partnership agreement violations
+economic-partnership-agreement-violations==1.0
+
+# Comprehensive economic partnership agreement violations
+comprehensive-economic-partnership-agreement-violations==1.0
+
+# Regional comprehensive economic partnership violations
+regional-comprehensive-economic-partnership-violations==1.0
+
+# Trans-Pacific Partnership violations
+trans-pacific-partnership-violations==1.0
+
+# Transatlantic Trade and Investment Partnership violations
+transatlantic-trade-and-investment-partnership-violations==1.0
+
+# North American Free Trade Agreement violations
+north-american-free-trade-agreement-violations==1.0
+
+# United States-Mexico-Canada Agreement violations
+united-states-mexico-canada-agreement-violations==1.0
+
+# European Union violations
+european-union-violations==1.0
+
+# European Economic Area violations
+european-economic-area-violations==1.0
+
+# European Free Trade Association violations
+european-free-trade-association-violations==1.0
+
+# Association of Southeast Asian Nations violations
+association-of-southeast-asian-nations-violations==1.0
+
+# Asia-Pacific Economic Cooperation violations
+asia-pacific-economic-cooperation-violations==1.0
+
+# World Trade Organization violations
+world-trade-organization-violations==1.0
+
+# International Monetary Fund violations
+international-monetary-fund-violations==1.0
+
+# World Bank violations
+world-bank-violations==1.0
+
+# International Finance Corporation violations
+international-finance-corporation-violations==1.0
+
+# Multilateral Investment Guarantee Agency violations
+multilateral-investment-guarantee-agency-violations==1.0
+
+# International Centre for Settlement of Investment Disputes violations
+international-centre-for-settlement-of-investment-disputes-violations==1.0
+
+# United Nations violations
+united-nations-violations==1.0
+
+# International Court of Justice violations
+international-court-of-justice-violations==1.0
+
+# International Criminal Court violations
+international-criminal-court-violations==1.0
+
+# International Tribunal for the Law of the Sea violations
+international-tribunal-for-the-law-of-the-sea-violations==1.0
+
+# Permanent Court of Arbitration violations
+permanent-court-of-arbitration-violations==1.0
+
+# International arbitration violations
+international-arbitration-violations==1.0
+
+# Investor-state dispute settlement violations
+investor-state-dispute-settlement-violations==1.0
+
+# Bilateral investment treaty violations
+bilateral-investment-treaty-violations==1.0
+
+# Multilateral investment treaty violations
+multilateral-investment-treaty-violations==1.0
+
+# Energy Charter Treaty violations
+energy-charter-treaty-violations==1.0
+
+# North American Free Trade Agreement Chapter 11 violations
+north-american-free-trade-agreement-chapter-11-violations==1.0
+
+# United States-Mexico-Canada Agreement Chapter 14 violations
+united-states-mexico-canada-agreement-chapter-14-violations==1.0
+
+# Comprehensive and Progressive Agreement for Trans-Pacific Partnership violations
+comprehensive-and-progressive-agreement-for-trans-pacific-partnership-violations==1.0
+
+# Regional Comprehensive Economic Partnership violations
+regional-comprehensive-economic-partnership-violations==1.0
+
+# African Continental Free Trade Area violations
+african-continental-free-trade-area-violations==1.0
+
+# Mercosur violations
+mercosur-violations==1.0
+
+# Andean Community violations
+andean-community-violations==1.0
+
+# Central American Integration System violations
+central-american-integration-system-violations==1.0
+
+# Caribbean Community violations
+caribbean-community-violations==1.0
+
+# Pacific Alliance violations
+pacific-alliance-violations==1.0
+
+# Union of South American Nations violations
+union-of-south-american-nations-violations==1.0
+
+# Organization of American States violations
+organization-of-american-states-violations==1.0
+
+# Inter-American Development Bank violations
+inter-american-development-bank-violations==1.0
+
+# Caribbean Development Bank violations
+caribbean-development-bank-violations==1.0
+
+# Central American Bank for Economic Integration violations
+central-american-bank-for-economic-integration-violations==1.0
+
+# Development Bank of Latin America violations
+development-bank-of-latin-america-violations==1.0
+
+# Asian Development Bank violations
+asian-development-bank-violations==1.0
+
+# Asian Infrastructure Investment Bank violations
+asian-infrastructure-investment-bank-violations==1.0
+
+# New Development Bank violations
+new-development-bank-violations==1.0
+
+# European Bank for Reconstruction and Development violations
+european-bank-for-reconstruction-and-development-violations==1.0
+
+# European Investment Bank violations
+european-investment-bank-violations==1.0
+
+# European Investment Fund violations
+european-investment-fund-violations==1.0
+
+# African Development Bank violations
+african-development-bank-violations==1.0
+
+# Islamic Development Bank violations
+islamic-development-bank-violations==1.0
+
+# OPEC Fund for International Development violations
+opec-fund-for-international-development-violations==1.0
+
+# Arab Monetary Fund violations
+arab-monetary-fund-violations==1.0
+
+# Arab Fund for Economic and Social Development violations
+arab-fund-for-economic-and-social-development-violations==1.0
+
+# Arab Investment Bank violations
+arab-investment-bank-violations==1.0
+
+# Arab Bank for Economic Development in Africa violations
+arab-bank-for-economic-development-in-africa-violations==1.0
+
+# Islamic Corporation for the Development of the Private Sector violations
+islamic-corporation-for-the-development-of-the-private-sector-violations==1.0
+
+# Islamic Corporation for the Insurance of Investment and Export Credit violations
+islamic-corporation-for-the-insurance-of-investment-and-export-credit-violations==1.0
+
+# International Islamic Trade Finance Corporation violations
+international-islamic-trade-finance-corporation-violations==1.0
+
+# Islamic Research and Training Institute violations
+islamic-research-and-training-institute-violations==1.0
+
+# International Centre for Biosaline Agriculture violations
+international-centre-for-biosaline-agriculture-violations==1.0
+
+# Islamic University of Technology violations
+islamic-university-of-technology-violations==1.0
+
+# Statistical, Economic and Social Research and Training Centre for Islamic Countries violations
+statistical-economic-and-social-research-and-training-centre-for-islamic-countries-violations==1.0
+
+# Islamic Centre for Development of Trade violations
+islamic-centre-for-development-of-trade-violations==1.0
+
+# Research Centre for Islamic History, Art and Culture violations
+research-centre-for-islamic-history-art-and-culture-violations==1.0
+
+# Islamic Educational, Scientific and Cultural Organization violations
+islamic-educational-scientific-and-cultural-organization-violations==1.0
+
+# Islamic Organization for Medical Sciences violations
+islamic-organization-for-medical-sciences-violations==1.0
+
+# Islamic Committee of the International Crescent violations
+islamic-committee-of-the-international-crescent-violations==1.0
+
+# Islamic Solidarity Fund violations
+islamic-solidarity-fund-violations==1.0
+
+# Islamic Solidarity Sports Federation violations
+islamic-solidarity-sports-federation-violations==1.0
+
+# Islamic Broadcasting Union violations
+islamic-broadcasting-union-violations==1.0
+
+# Islamic Society of North America violations
+islamic-society-of-north-america-violations==1.0
+
+# Islamic Circle of North America violations
+islamic-circle-of-north-america-violations==1.0
+
+# Muslim American Society violations
+muslim-american-society-violations==1.0
+
+# Council on American-Islamic Relations violations
+council-on-american-islamic-relations-violations==1.0
+
+# Muslim Public Affairs Council violations
+muslim-public-affairs-council-violations==1.0
+
+# Islamic Networks Group violations
+islamic-networks-group-violations==1.0
+
+# Muslim Students Association violations
+muslim-students-association-violations==1.0
+
+# Young Muslims violations
+young-muslims-violations==1.0
+
+# Muslim Youth of North America violations
+muslim-youth-of-north-america-violations==1.0
+
+# Islamic Association of North America violations
+islamic-association-of-north-america-violations==1.0
+
+# Federation of Islamic Associations in the United States and Canada violations
+federation-of-islamic-associations-in-the-united-states-and-canada-violations==1.0
+
+# North American Islamic Trust violations
+north-american-islamic-trust-violations==1.0
+
+# Islamic Foundation of North America violations
+islamic-foundation-of-north-america-violations==1.0
+
+# Islamic Information Center of America violations
+islamic-information-center-of-america-violations==1.0
+
+# Islamic Research Foundation International violations
+islamic-research-foundation-international-violations==1.0
+
+# International Institute of Islamic Thought violations
+international-institute-of-islamic-thought-violations==1.0
+
+# Islamic Society of Boston violations
+islamic-society-of-boston-violations==1.0
+
+# Islamic Center of America violations
+islamic-center-of-america-violations==1.0
+
+# Islamic Center of Greater Cincinnati violations
+islamic-center-of-greater-cincinnati-violations==1.0
+
+# Islamic Center of Southern California violations
+islamic-center-of-southern-california-violations==1.0
+
+# Islamic Center of Washington violations
+islamic-center-of-washington-violations==1.0
+
+# Islamic Center of New York violations
+islamic-center-of-new-york-violations==1.0
+
+# Islamic Cultural Center of New York violations
+islamic-cultural-center-of-new-york-violations==1.0
+
+# Masjid Malcolm Shabazz violations
+masjid-malcolm-shabazz-violations==1.0
+
+# Dar al-Hijrah Islamic Center violations
+dar-al-hijrah-islamic-center-violations==1.0
+
+# All Dulles Area Muslim Society violations
+all-dulles-area-muslim-society-violations==1.0
+
+# Islamic Society of Greater Houston violations
+islamic-society-of-greater-houston-violations==1.0
+
+# Islamic Society of Orange County violations
+islamic-society-of-orange-county-violations==1.0
+
+# Islamic Center of Irving violations
+islamic-center-of-irving-violations==1.0
+
+# Islamic Association of Raleigh violations
+islamic-association-of-raleigh-violations==1.0
+
+# Islamic Society of Central Florida violations
+islamic-society-of-central-florida-violations==1.0
+
+# Islamic Society of Greater Kansas City violations
+islamic-society-of-greater-kansas-city-violations==1.0
+
+# Islamic Center of Minnesota violations
+islamic-center-of-minnesota-violations==1.0
+
+# Islamic Society of Milwaukee violations
+islamic-society-of-milwaukee-violations==1.0
+
+# Islamic Foundation of Greater St. Louis violations
+islamic-foundation-of-greater-st-louis-violations==1.0
+
+# Islamic Society of Greater Oklahoma City violations
+islamic-society-of-greater-oklahoma-city-violations==1.0
+
+# Islamic Society of Tulsa violations
+islamic-society-of-tulsa-violations==1.0
+
+# Islamic Center of Nashville violations
+islamic-center-of-nashville-violations==1.0
+
+# Islamic Center of Memphis violations
+islamic-center-of-memphis-violations==1.0
+
+# Islamic Society of Greater Richmond violations
+islamic-society-of-greater-richmond-violations==1.0
+
+# Islamic Society of the Washington Area violations
+islamic-society-of-the-washington-area-violations==1.0
+
+# Islamic Society of Baltimore violations
+islamic-society-of-baltimore-violations==1.0
+
+# Islamic Society of Delaware violations
+islamic-society-of-delaware-violations==1.0
+
+# Islamic Society of New Jersey violations
+islamic-society-of-new-jersey-violations==1.0
+
+# Islamic Center of Long Island violations
+islamic-center-of-long-island-violations==1.0
+
+# Islamic Society of Bay Ridge violations
+islamic-society-of-bay-ridge-violations==1.0
+
+# Masjid At-Taqwa violations
+masjid-at-taqwa-violations==1.0
+
+# Masjid Ar-Rahman violations
+masjid-ar-rahman-violations==1.0
+
+# Masjid Al-Farooq violations
+masjid-al-farooq-violations==1.0
+
+# Masjid Al-Noor violations
+masjid-al-noor-violations==1.0
+
+# Masjid Al-Hidaya violations
+masjid-al-hidaya-violations==1.0
+
+# Masjid Al-Iman violations
+masj

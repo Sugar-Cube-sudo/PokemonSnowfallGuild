@@ -1,0 +1,294 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* 主题颜色变量 */
+  --primary-color: #3B82F6;
+  --accent-color: #8B5CF6;
+  --border-radius: 8px;
+  --font-size-base: 16px;
+  
+  /* 动画变量 */
+  --animation-speed: 0.3s;
+  
+  /* 背景变量 */
+  --background-image: none;
+  --background-color: transparent;
+  --background-opacity: 0.1;
+  --background-blur: 0px;
+}
+
+/* CSS Variables for theme colors */
+:root {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* 自定义字体定义 */
+@font-face {
+  font-family: 'MapleMono';
+  src: url('/fonts/MapleMono-NF-CN-Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'MapleMono', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: var(--font-size-base);
+}
+
+/* 全局动画类 */
+.animate-fade-in {
+  animation: fadeIn var(--animation-speed) ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn var(--animation-speed) ease-out;
+}
+
+.animate-bounce-in {
+  animation: bounceIn var(--animation-speed) ease-out;
+}
+
+.animate-pulse-custom {
+  animation: pulseCustom calc(var(--animation-speed) * 2) ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shake var(--animation-speed) ease-in-out;
+}
+
+/* 悬停效果 */
+.hover-lift {
+  transition: transform var(--animation-speed) ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.hover-scale {
+  transition: transform var(--animation-speed) ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* 主题颜色应用 */
+.bg-primary {
+  background-color: var(--primary-color);
+}
+
+.bg-accent {
+  background-color: var(--accent-color);
+}
+
+.text-primary {
+  color: var(--primary-color);
+}
+
+.text-accent {
+  color: var(--accent-color);
+}
+
+.border-primary {
+  border-color: var(--primary-color);
+}
+
+.border-accent {
+  border-color: var(--accent-color);
+}
+
+/* 圆角应用 */
+.rounded-theme {
+  border-radius: var(--border-radius);
+}
+
+/* 动画关键帧 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseCustom {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.7);
+}
+
+/* 选择文本样式 */
+::selection {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* 焦点样式 */
+.focus-ring {
+  transition: box-shadow var(--animation-speed) ease;
+}
+
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* 加载动画 */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 渐变文字效果 */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 径向渐变背景 */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* 玻璃态效果 */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-effect {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 阴影效果 */
+.shadow-glow {
+  box-shadow: 0 0 20px rgba(var(--primary-color), 0.3);
+}
+
+/* 响应式字体 */
+@media (max-width: 640px) {
+  :root {
+    --font-size-base: 14px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --font-size-base: 16px;
+  }
+}
+
+/* 打印样式 */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
